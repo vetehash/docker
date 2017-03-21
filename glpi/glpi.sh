@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ "$(ls /var/www/glpi)" ];
+if [ -d "/var/www/glpi" ];
 then
 	echo "GLPI is already installed"
 else
