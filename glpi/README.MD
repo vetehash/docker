@@ -1,1 +1,0 @@
-Docker GLPI sans docker compose PLM.
