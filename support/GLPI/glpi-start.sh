@@ -1,8 +1,6 @@
 #!/bin/bash
-
-VERSION_GLPI=9.1.2
-SRC_GLPI=https://github.com/glpi-project/glpi/releases/download/${VERSION_GLPI}/glpi-${VERSION_GLPI}.tar.gz
-TAR_GLPI=glpi-${VERSION_GLPI}.tar.gz
+SRC_GLPI=https://github.com/glpi-project/glpi/releases/download/9.1.2/glpi-9.1.2.tgz
+TAR_GLPI=glpi-9.1.2.tgz
 FOLDER_GLPI=glpi/
 FOLDER_WEB=/var/www/html/
 
