@@ -1,0 +1,61 @@
+mysql-data:
+ image: busybox
+ container_name: mysql-data
+ volumes:
+  - /home/docker/mysql-data/var/lib/mysql:/var/lib/mysql
+
+mysql:
+ image: mysql
+ container_name: mysql
+ hostname: mysql
+ volumes_from:
+  - mysql-data
+ environment:
+  - MYSQL_ROOT_PASSWORD=glpi
+  - MYSQL_DATABASE=glpidb
+  - MYSQL_USER=glpi_user
+  - MYSQL_PASSWORD=glpi
+
+glpi-data:
+ image: busybox
+ container_name: glpi-data
+ volumes:
+ - /home/docker/glpi-data/var/www/html/glpi:/var/www/html/glpi
+
+glpi:
+ image: vetehash/glpi
+ container_name : glpi
+ hostname: glpi
+ ports:
+  - "80:80"
+  - "443:443"
+ links:
+  - mysql:mysql
+ volumes_from:
+  - glpi-data
+
+ocsi-data:
+ image: busybox
+ container_name: ocsi-data
+ volumes:
+ - /home/docker/ocsi-data:/usr/share/ocsinventory-reports/
+ - /home/docker/ocsi-data:/etc/ocsinventory-reports/
+ - /home/docker/ocsi-data:/var/lib/ocsinventory-reports/
+
+ocs-inventory:
+ image: vetehash/ocs-inventory
+ container_name: ocs-inventory
+ hostname: ocs-inventory
+ ports:
+  - "8080:8080"
+  - "4443:4443"
+ links:
+  - mysql:mysql
+ volumes_from:
+  - ocsi-data
+ environment:
+  - OCS_DBNAME=ocsweb
+  - OCS_DBSERVER_READ=localhost
+  - OCS_DBSERVER_WRITE=localhost
+  - OCS_DBUSER=ocs
+  - OCS_DBPASS=ocs

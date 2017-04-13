@@ -22,3 +22,4 @@ RUN chmod +x /opt/glpi-start.sh
 ENTRYPOINT ["/opt/glpi-start.sh"]
 
 EXPOSE 80
+EXPOSE 443

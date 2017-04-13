@@ -101,7 +101,7 @@ RUN chmod +x /root/run.sh ;\
     rm -rf /var/lib/apt/lists/* ;\
     rm -rf /var/cache/apt/archives/* ;
 
-EXPOSE 80
-EXPOSE 443
+EXPOSE 8080
+EXPOSE 4443
 
 CMD ["/bin/bash", "/root/run.sh"]
